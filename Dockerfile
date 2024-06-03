@@ -15,6 +15,12 @@ FROM node:${NODE_VERSION}-alpine as base
 # Set working directory for all build stages.
 WORKDIR /usr/src/app
 
+################################################################################
+# Enable corepack
+RUN corepack enable
+
+# Update yarn to v4
+RUN yarn set version berry
 
 ################################################################################
 # Create a stage for installing production dependecies.
