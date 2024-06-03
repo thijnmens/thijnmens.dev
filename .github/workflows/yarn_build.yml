@@ -23,6 +23,12 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Update yarn version
+        run: yarn set version berry
+
       - name: Install dependencies
         run: yarn install
 
