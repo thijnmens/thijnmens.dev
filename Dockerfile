@@ -32,6 +32,7 @@ FROM base as deps
 # into this layer.
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=yarn.lock,target=yarn.lock \
+    --mount=type=bind,source=.yarnrc.yml,target=.yarnrc.yml \
     --mount=type=cache,target=/root/.yarn \
     yarn workspaces focus --production
 
@@ -43,6 +44,7 @@ FROM deps as build
 # "devDependencies" to be installed to build. If you don't need this, remove this step.
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=yarn.lock,target=yarn.lock \
+    --mount=type=bind,source=.yarnrc.yml,target=.yarnrc.yml \
     --mount=type=cache,target=/root/.yarn \
     yarn workspaces focus
 
