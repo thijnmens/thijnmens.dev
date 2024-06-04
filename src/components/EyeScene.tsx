@@ -3,7 +3,7 @@ import { Sphere } from '../helpers/ShapeCreator.tsx';
 import { MouseEvent, useRef, useState } from 'react';
 import { Object3D, Vector3 } from 'three';
 
-export default function HomepageScene() {
+export default function EyeScene() {
 	const self = useRef<HTMLDivElement>(null);
 	const [mouseLocation, setMouseLocation] = useState<number[]>([0, 0]);
 
@@ -14,7 +14,7 @@ export default function HomepageScene() {
 	}
 
 	return (
-		<div ref={self} className="h-screen w-full" onMouseMove={calculateMouseLocation}>
+		<div ref={self} className="h-screen w-full eye-scene-background" onMouseMove={calculateMouseLocation}>
 			<Canvas orthographic camera={{ zoom: 50, position: [0, 0, 1] }}>
 				<ambientLight intensity={Math.PI / 2} />
 				<spotLight position={[69, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
