@@ -15,7 +15,7 @@ export default function HomepageScene() {
 
 	return (
 		<div ref={self} className="h-screen w-full" onMouseMove={calculateMouseLocation}>
-			<Canvas>
+			<Canvas orthographic camera={{ zoom: 50, position: [0, 0, 1] }}>
 				<ambientLight intensity={Math.PI / 2} />
 				<spotLight position={[69, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
 				<pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
@@ -30,11 +30,20 @@ const Eye = (props: { mouseX: number; mouseY: number; location: [x: number, y: n
 	const sphereRef = useRef<Object3D>(null);
 	const lerpRef = useRef<Object3D>(null);
 
+	function getEyePosition() {
+		return new Vector3(-props.mouseX, -props.mouseY / 2, 0);
+	}
+
 	useFrame(() => {
 		if (!sphereRef.current || !lerpRef.current) return;
 		lerpRef.current.lookAt(new Vector3(props.mouseX, props.mouseY, 5));
 		sphereRef.current.quaternion.slerpQuaternions(sphereRef.current.quaternion, lerpRef.current.quaternion, 0.05);
-		sphereRef.current.position.set(...props.location);
+
+		const position = getEyePosition();
+		sphereRef.current.position.lerp(
+			new Vector3(props.location[0] + position.x, props.location[1] + position.y, props.location[2] + position.z),
+			0.01,
+		);
 	});
 
 	return (
