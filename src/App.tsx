@@ -1,7 +1,5 @@
-import './App.css';
+import HomepageScene from './components/HomepageScene.tsx';
 
-function App() {
-	return <></>;
+export default function App() {
+	return <HomepageScene />;
 }
-
-export default App;
