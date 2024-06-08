@@ -2,9 +2,7 @@ name: Build using yarn
 
 on:
     push:
-        branches: ['**', '!main']
-    pull_request:
-        branches: ['main']
+        branches: ['**']
     workflow_dispatch:
 
 jobs:

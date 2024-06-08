@@ -1,49 +1,77 @@
 import pages from '../main.tsx';
+import { TfiAlignJustify } from 'react-icons/tfi';
+import { useState } from 'react';
 
 const redirect = (url: string) => {
-	if (url.toLowerCase().startsWith("http")) window.location.href = url
+	if (url.toLowerCase().startsWith('http')) window.location.href = url;
 	else window.location.pathname = url;
 };
 
 export default function Navbar() {
+	const [dropdown, setDropdown] = useState<boolean>(false);
 
 	return (
-		<nav className="m-16 rounded-lg bg-white text-black h-20 left-0 right-0 top-0 flex p-2 shadow-xl z-10">
-			<div className="flex">
-				<img src="https://cdn.thijnmens.dev/logo.png" alt="Thijnmens.dev" className="rounded-full mx-2" />
-				<h1 className="my-auto">
-					<span className="font-extralight text-4xl">Thijnmens</span>
-					<span className="font-thin">.dev</span>
-				</h1>
-			</div>
-
-			<div className="group flex hover:w-16 w-1 hover:bg-pink-950 bg-black hover:bg-opacity-30 bg-opacity-10 rounded-lg mx-4 animate-smooth duration-1000 delay-1000">
-				<button className="group-hover:opacity-100 opacity-0 mx-2 my-auto animate-smooth duration-1000 delay-1000 text-white italic font-extrabold">
-					Enter
-				</button>
-			</div>
-
-			<div className="flex w-full">
-				{pages().map((page, i) => {
-					return <NavButton key={i} name={page.id ?? 'Button'} to={page.path ?? "/"} />;
-				})}
-			</div>
-
-			<div className="justify-end flex">
-				<button className="w-10 rounded-full cursor-default">
+		<>
+			<nav
+				aria-expanded={dropdown}
+				className="md:m-16 md:rounded-lg aria-expanded:rounded-none rounded-b-lg bg-white text-black h-20 left-0 right-0 top-0 flex p-2 shadow-xl z-10"
+			>
+				<div className="flex">
 					<img
-						src="https://github.com/fluidicon.png"
-						alt="Github"
-						className="cursor-pointer"
-						onClick={() => redirect('https://github.com/thijnmens/thijnmens.dev')}
+						src="https://cdn.thijnmens.dev/logo.png"
+						alt="Thijnmens.dev"
+						className="rounded-full mx-2 max-w-0 md:max-w-full"
 					/>
+					<h1 className="my-auto">
+						<span className="font-extralight md:text-4xl text-2xl">Thijnmens</span>
+						<span className="font-thin">.dev</span>
+					</h1>
+				</div>
+
+				<div className="w-1 bg-black md:bg-opacity-10 bg-opacity-0 rounded-lg md:mx-4 mx-auto" />
+				<button className="md:w-0 md:opacity-0 mx-4" onClick={() => setDropdown(!dropdown)}>
+					<TfiAlignJustify />
 				</button>
+
+				<div className="flex md:w-full md:opacity-100 opacity-0 w-0">
+					{pages().map((page) => {
+						return <NavButton key={page.id} name={page.id ?? 'Button'} to={page.path ?? '/'} />;
+					})}
+				</div>
+
+				<div className="justify-end flex md:w-fit md:opacity-100 opacity-0 w-0">
+					<button
+						className="w-10 rounded-full cursor-default"
+						onClick={() => redirect('https://github.com/thijnmens/thijnmens.dev')}
+					>
+						<img src="https://github.com/fluidicon.png" alt="Github" className="cursor-pointer" />
+					</button>
+				</div>
+			</nav>
+			<div className="flex flex-col text-black">
+				<hr aria-expanded={!dropdown} className="aria-expanded:opacity-0" />
+				{dropdown ? (
+					<div aria-expanded={dropdown} className="bg-white p-2 aria-expanded:rounded-b-lg">
+						{pages().map((page) => {
+							return (
+								<NavButton
+									key={page.id}
+									name={page.id ?? 'Button'}
+									to={page.path ?? '/'}
+									className="w-full"
+								/>
+							);
+						})}
+					</div>
+				) : (
+					<></>
+				)}
 			</div>
-		</nav>
+		</>
 	);
 }
 
-function NavButton(props: { name: string, to: string, className?: string }) {
+function NavButton(props: Readonly<{ name: string; to: string; className?: string }>) {
 	return (
 		<button
 			className={`rounded-lg bg-black bg-opacity-0 hover:bg-opacity-5 px-4 py-1 animate-smooth duration-100 ${props.className ?? ''}`}
