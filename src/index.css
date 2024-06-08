@@ -3,70 +3,42 @@
 @tailwind utilities;
 
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
-
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	@apply bg-background text-white;
 }
 
-a {
-	font-weight: 500;
-	color: #646cff;
-	text-decoration: inherit;
-}
-a:hover {
-	color: #535bf2;
+.eye-scene-background {
+	@apply bg-gradient-to-t from-purple-400 via-blue-600 to-blue-500;
 }
 
-body {
-	margin: 0;
-	display: flex;
-	place-items: center;
-	min-width: 320px;
-	min-height: 100vh;
+.animate-triangle {
+	animation: triangle-animation 30s linear infinite;
+	will-change: transform, opacity;
 }
 
-h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
+.triangle-sm {
+	@apply w-0 h-0 border-l-[10px] border-l-transparent border-b-[15px] border-b-white border-r-[10px] border-r-transparent blur-[1px] absolute;
 }
 
-button {
-	border-radius: 8px;
-	border: 1px solid transparent;
-	padding: 0.6em 1.2em;
-	font-size: 1em;
-	font-weight: 500;
-	font-family: inherit;
-	background-color: #1a1a1a;
-	cursor: pointer;
-	transition: border-color 0.25s;
-}
-button:hover {
-	border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+.triangle-md {
+	@apply w-0 h-0 border-l-[17px] border-l-transparent border-b-[25px] border-b-white border-r-[17px] border-r-transparent blur-[1px] absolute;
 }
 
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
+.triangle-lg {
+	@apply w-0 h-0 border-l-[50px] border-l-transparent border-b-[75px] border-b-white border-r-[50px] border-r-transparent blur-[1px] absolute;
+}
+
+@keyframes triangle-animation {
+	0% {
+		transform: translateY(100vh);
+		opacity: 0.2;
 	}
-	a:hover {
-		color: #747bff;
+
+	100% {
+		transform: translateY(0vh);
+		opacity: 0;
 	}
-	button {
-		background-color: #f9f9f9;
-	}
+}
+
+.animate-smooth {
+	@apply transform-gpu transition-all ease-in-out;
 }

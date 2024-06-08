@@ -1,31 +1,30 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import EyeScene from './components/EyeScene.tsx';
+import { CSSProperties } from 'react';
 
-function App() {
-	const [count, setCount] = useState(0);
-
+export default function App() {
 	return (
 		<>
-			<div>
-				<a href="https://vitejs.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
+			<div className="absolute w-screen h-screen overflow-hidden">
+				{[...Array(20).keys()].map(() => {
+					const rand = Math.random();
+
+					const style: CSSProperties = {
+						left: Math.floor(Math.random() * 90) + 10 + '%', // Generate random number between 0.1 and 0.9
+						animationDelay: Math.random() * -30 + 's', // -30 so that the animation starts from first load instead of somewhere between 0 and 30 seconds after
+					};
+
+					if (rand <= 0.2)
+						return (
+							<li className="triangle-lg triangle-background animate-triangle opacity-0" style={style} />
+						);
+					if (rand <= 0.8)
+						return (
+							<li className="triangle-sm triangle-background animate-triangle opacity-0" style={style} />
+						);
+					return <li className="triangle-md triangle-background animate-triangle opacity-0" style={style} />;
+				})}
 			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+			<EyeScene />
 		</>
 	);
 }
-
-export default App;
