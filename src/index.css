@@ -38,3 +38,7 @@
 		opacity: 0;
 	}
 }
+
+.animate-smooth {
+	@apply transform-gpu transition-all ease-in-out;
+}
