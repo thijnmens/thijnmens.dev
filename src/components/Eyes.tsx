@@ -1,20 +1,22 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere } from '../helpers/ShapeCreator.tsx';
-import { MouseEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Object3D, Vector3 } from 'three';
 
-export default function EyeScene() {
+export default function Eyes() {
 	const self = useRef<HTMLDivElement>(null);
 	const [mouseLocation, setMouseLocation] = useState<number[]>([0, 0]);
 
-	function calculateMouseLocation(e: MouseEvent) {
+	function calculateMouseLocation(e: globalThis.MouseEvent) {
 		const mouseX = -10 + (20 / (self.current?.offsetWidth ?? window.innerWidth)) * e.clientX;
 		const mouseY = (-10 + (20 / (self.current?.offsetHeight ?? 11)) * e.clientY) * -1;
 		setMouseLocation([mouseX, mouseY]);
 	}
 
+	window.onmousemove = (e) => calculateMouseLocation(e);
+
 	return (
-		<div ref={self} className="h-screen w-full eye-scene-background" onMouseMove={calculateMouseLocation}>
+		<div ref={self} className="h-screen w-full -z-10 absolute top-0">
 			<Canvas orthographic camera={{ zoom: 50, position: [0, 0, 1] }}>
 				<ambientLight intensity={Math.PI / 2} />
 				<spotLight position={[69, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
@@ -49,7 +51,7 @@ const Eye = (props: { mouseX: number; mouseY: number; location: [x: number, y: n
 	return (
 		<>
 			<object3D ref={lerpRef} />
-			<object3D ref={sphereRef}>
+			<object3D ref={sphereRef} position={[25 + props.location[0] ,0,-1]}>
 				<Sphere texture={'../assets/Eye_4096.png'} />
 			</object3D>
 		</>
