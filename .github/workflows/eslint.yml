@@ -11,10 +11,11 @@ name: Verify code quality with ESLint
 
 on:
     push:
-        branches: ['**']
+        branches: ['**', '!main']
     pull_request:
         # The branches below must be a subset of the branches above
-        branches: ['**']
+        branches: ['main']
+    workflow_dispatch:
 
 jobs:
     eslint:
