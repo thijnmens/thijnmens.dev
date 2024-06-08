@@ -51,7 +51,7 @@ const Eye = (props: { mouseX: number; mouseY: number; location: [x: number, y: n
 	return (
 		<>
 			<object3D ref={lerpRef} />
-			<object3D ref={sphereRef} position={[25 + props.location[0] ,0,-1]}>
+			<object3D ref={sphereRef} position={[25 + props.location[0], 0, -1]}>
 				<Sphere texture={'../assets/Eye_4096.png'} />
 			</object3D>
 		</>
