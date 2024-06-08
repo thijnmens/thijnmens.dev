@@ -12,21 +12,29 @@
 
 .animate-triangle {
 	animation: triangle-animation 30s linear infinite;
-	will-change: bottom, opacity;
+	will-change: transform, opacity;
 }
 
-.triangle {
-	@apply w-0 h-0 border-l-transparent border-b-white border-r-transparent blur-[1px] absolute;
+.triangle-sm {
+	@apply w-0 h-0 border-l-[10px] border-l-transparent border-b-[15px] border-b-white border-r-[10px] border-r-transparent blur-[1px] absolute;
+}
+
+.triangle-md {
+	@apply w-0 h-0 border-l-[17px] border-l-transparent border-b-[25px] border-b-white border-r-[17px] border-r-transparent blur-[1px] absolute;
+}
+
+.triangle-lg {
+	@apply w-0 h-0 border-l-[50px] border-l-transparent border-b-[75px] border-b-white border-r-[50px] border-r-transparent blur-[1px] absolute;
 }
 
 @keyframes triangle-animation {
 	0% {
-		bottom: -15%;
+		transform: translateY(100vh);
 		opacity: 0.2;
 	}
 
 	100% {
-		bottom: 115%;
+		transform: translateY(0vh);
 		opacity: 0;
 	}
 }
