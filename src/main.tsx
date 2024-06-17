@@ -4,7 +4,8 @@ import App from './App.tsx';
 import './index.css';
 import Navbar from './components/Navbar.tsx';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
-import Projects from './pages/Projects.tsx';
+import Projects from './routes/Projects.tsx';
+import ErrorPage from './routes/ErrorPage.tsx';
 
 export default function pages(): RouteObject[] {
 	return [
