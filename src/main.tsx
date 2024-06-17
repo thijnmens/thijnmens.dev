@@ -13,11 +13,13 @@ export default function pages(): RouteObject[] {
 			id: 'Home',
 			path: '/',
 			element: <App />,
+			errorElement: <ErrorPage />,
 		},
 		{
 			id: 'Projects',
 			path: '/projects',
 			element: <Projects />,
+			errorElement: <ErrorPage />,
 		},
 	];
 }
