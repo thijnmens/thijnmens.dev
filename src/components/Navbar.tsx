@@ -1,7 +1,6 @@
 import pages from '../main.tsx';
 import { TfiAlignJustify } from 'react-icons/tfi';
 import { useState } from 'react';
-import { redirect } from 'react-router-dom';
 
 export default function Navbar() {
 	const [dropdown, setDropdown] = useState<boolean>(false);
@@ -71,9 +70,9 @@ function NavButton(props: Readonly<{ name: string; to: string; className?: strin
 		<span
 			className={`rounded-lg bg-black bg-opacity-0 hover:bg-opacity-5 px-4 py-1 animate-smooth duration-100 content-center ${props.className ?? ''}`}
 		>
-			<button onClick={() => redirect(props.to)}>
+			<a href={props.to}>
 				<p>{props.name}</p>
-			</button>
+			</a>
 		</span>
 	);
 }
