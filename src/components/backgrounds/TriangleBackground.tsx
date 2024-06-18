@@ -11,7 +11,7 @@ const triangles = [...Array(50).keys()].map((i) => {
 		borderRightWidth: (triangleSize / 3) * 2 + 'px',
 	};
 
-	return <ul key={i} className="triangle triangle-background animate-triangle opacity-0" style={style} />;
+	return <ul key={i} className="triangle triangle-background animate-vertical opacity-0" style={style} />;
 });
 
 export default function TriangleBackground() {
@@ -22,7 +22,7 @@ export default function TriangleBackground() {
 	};
 
 	return (
-		<div className="absolute -z-20 w-screen h-screen overflow-hidden eye-scene-background top-0">
+		<div className="absolute -z-20 w-screen h-screen overflow-hidden gradient-purple-blue top-0">
 			{range.map((i) => {
 				return triangles[i];
 			})}

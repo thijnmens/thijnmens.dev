@@ -2,11 +2,6 @@ import pages from '../main.tsx';
 import { TfiAlignJustify } from 'react-icons/tfi';
 import { useState } from 'react';
 
-const redirect = (url: string) => {
-	if (url.toLowerCase().startsWith('http')) window.location.href = url;
-	else window.location.pathname = url;
-};
-
 export default function Navbar() {
 	const [dropdown, setDropdown] = useState<boolean>(false);
 
@@ -40,12 +35,11 @@ export default function Navbar() {
 				</div>
 
 				<div className="justify-end flex md:w-fit md:opacity-100 opacity-0 w-0">
-					<button
-						className="w-10 rounded-full cursor-default"
-						onClick={() => redirect('https://github.com/thijnmens/thijnmens.dev')}
-					>
-						<img src="https://github.com/fluidicon.png" alt="Github" className="cursor-pointer" />
-					</button>
+					<span className="w-10 my-auto rounded-full cursor-default">
+						<a href={'https://github.com/thijnmens/thijnmens.dev'}>
+							<img src="https://github.com/fluidicon.png" alt="Github" className="cursor-pointer" />
+						</a>
+					</span>
 				</div>
 			</nav>
 			<div className="flex flex-col text-black">
@@ -73,11 +67,11 @@ export default function Navbar() {
 
 function NavButton(props: Readonly<{ name: string; to: string; className?: string }>) {
 	return (
-		<button
-			className={`rounded-lg bg-black bg-opacity-0 hover:bg-opacity-5 px-4 py-1 animate-smooth duration-100 ${props.className ?? ''}`}
-			onClick={() => redirect(props.to)}
+		<a
+			className={`rounded-lg bg-black bg-opacity-0 hover:bg-opacity-5 px-4 py-1 animate-smooth duration-100 content-center ${props.className ?? ''}`}
+			href={props.to}
 		>
 			<p>{props.name}</p>
-		</button>
+		</a>
 	);
 }
