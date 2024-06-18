@@ -9,7 +9,7 @@
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"prepare": "husky",
-		"start": "npx -y serve -s ./dist/ -C -l 3001 -s --no-port-switching"
+		"start": "npx -y serve -s ./dist/ -C -l 3000 -s --no-port-switching"
 	},
 	"dependencies": {
 		"@react-three/fiber": "^8.16.7",
