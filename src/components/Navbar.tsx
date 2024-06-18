@@ -67,12 +67,11 @@ export default function Navbar() {
 
 function NavButton(props: Readonly<{ name: string; to: string; className?: string }>) {
 	return (
-		<span
+		<a
 			className={`rounded-lg bg-black bg-opacity-0 hover:bg-opacity-5 px-4 py-1 animate-smooth duration-100 content-center ${props.className ?? ''}`}
+			href={props.to}
 		>
-			<a href={props.to}>
-				<p>{props.name}</p>
-			</a>
-		</span>
+			<p>{props.name}</p>
+		</a>
 	);
 }
