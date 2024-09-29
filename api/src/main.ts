@@ -37,3 +37,5 @@ app.get('/', (_, res) => {
 app.listen(process.env.API_PORT, () => {
 	console.log(`API running on ${process.env.API_PORT} in ${process.env.NODE_ENV} mode`);
 });
+
+export default app;
