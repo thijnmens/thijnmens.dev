@@ -6,7 +6,7 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG NODE_VERSION=18.18.2
+ARG NODE_VERSION=22.9.0
 
 ################################################################################
 # Use node image for base image for all stages.
@@ -75,6 +75,7 @@ COPY --from=build /usr/src/app/dist ./dist
 
 # Expose the port that the application listens on.
 EXPOSE 3000
+EXPOSE 3001
 
 # Run the application.
 CMD yarn start

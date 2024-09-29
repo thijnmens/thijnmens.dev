@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": false,
+		"noEmitOnError": true,
+		"removeComments": true,
+		"sourceMap": true,
+		"target": "es2020",
+		"outDir": "dist",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"esModuleInterop": true,
+		"module": "nodeNext",
+		"moduleResolution": "nodeNext"
+	},
+	"include": ["src/**/*"]
+}
