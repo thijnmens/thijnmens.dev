@@ -6,6 +6,7 @@ import Navbar from './components/Navbar.tsx';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 import Projects from './routes/Projects.tsx';
 import ErrorPage from './routes/ErrorPage.tsx';
+import Layouts from './routes/Layouts.tsx';
 
 export default function pages(): RouteObject[] {
 	return [
@@ -21,6 +22,12 @@ export default function pages(): RouteObject[] {
 			element: <Projects />,
 			errorElement: <ErrorPage />,
 		},
+		{
+			id: 'Adofai Layouts',
+			path: '/layouts',
+			element: <Layouts />,
+			errorElement: <ErrorPage />
+		}
 	];
 }
 

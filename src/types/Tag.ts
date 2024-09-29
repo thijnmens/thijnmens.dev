@@ -3,6 +3,8 @@ enum Tag {
 	AI = 'AI',
 	Webdev = 'Webdev',
 	Typescript = 'Typescript',
+	Clean = 'Clean',
+	Example = 'Example'
 }
 
 export default Tag;
