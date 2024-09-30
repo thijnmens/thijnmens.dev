@@ -44,7 +44,7 @@ export default class QueryBuilder {
 
 	async execute() {
 		if (process.env.NODE_ENV === 'development') console.log(this.queryString);
-		const [rows, _] = await this.connection.query<RowDataPacket[]>(this.queryString);
+		const [rows] = await this.connection.query<RowDataPacket[]>(this.queryString);
 		this.queryString = "";
 		return rows;
 	}
