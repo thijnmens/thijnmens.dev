@@ -1,13 +1,12 @@
 import SquareBackground from '../components/backgrounds/SquareBackground.tsx';
 import { PropsWithChildren } from 'react';
-import { FaMagnifyingGlass } from "react-icons/fa6";
-import { FaDownload, FaGlobeAmericas } from "react-icons/fa";
+import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { FaDownload, FaGlobeAmericas } from 'react-icons/fa';
 import Tag from '../types/Tag.ts';
 import Layout from '../types/Layout.ts';
 
 
 export default function Layouts() {
-
 	const layouts = [
 		{
 			name: "Externion",
@@ -17,7 +16,7 @@ export default function Layouts() {
 			source: "https://github.com/thijnmens/AdofaiWeb/tree/master/Examples/Externion",
 			download: "https://raw.githubusercontent.com/thijnmens/AdofaiWeb/refs/heads/master/Examples/Externion/Externion.html"
 		}
-	]
+	];
 
 	return (
 		<>

@@ -4,11 +4,22 @@ import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+import layoutRouter from './routes/Layouts.js';
 
-// Load ENV
+// Load ENVs
 dotenv.config({
 	path: `.env.${process.env.NODE_ENV}`,
 });
+dotenv.config({
+	path: './api/.env',
+});
+
+console.log({
+	host: process.env.DB_HOST as string,
+	user: process.env.DB_USER as string,
+	password: process.env.DB_PASSWORD as string,
+	database: process.env.DB_NAME as string,
+})
 
 // Configure express
 const app = express();
@@ -29,6 +40,9 @@ app.use(
 
 // Serve static content
 app.use(express.static(process.env.STATIC_DIR as string));
+
+// Register routes
+app.use('/layouts', layoutRouter)
 
 app.get('/', (_, res) => {
 	res.redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ');

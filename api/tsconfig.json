@@ -12,7 +12,8 @@
 		"noFallthroughCasesInSwitch": true,
 		"esModuleInterop": true,
 		"module": "nodeNext",
-		"moduleResolution": "nodeNext"
+		"moduleResolution": "nodeNext",
+		"allowImportingTsExtensions": true
 	},
 	"include": ["src/**/*"]
 }
