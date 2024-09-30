@@ -4,8 +4,9 @@ import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+import layoutRouter from './routes/Layouts.js';
 
-// Load ENV
+// Load ENVs
 dotenv.config({
 	path: `.env.${process.env.NODE_ENV}`,
 });
@@ -29,6 +30,9 @@ app.use(
 
 // Serve static content
 app.use(express.static(process.env.STATIC_DIR as string));
+
+// Register routes
+app.use('/layouts', layoutRouter)
 
 app.get('/', (_, res) => {
 	res.redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
