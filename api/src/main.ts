@@ -10,16 +10,6 @@ import layoutRouter from './routes/Layouts.js';
 dotenv.config({
 	path: `.env.${process.env.NODE_ENV}`,
 });
-dotenv.config({
-	path: './api/.env',
-});
-
-console.log({
-	host: process.env.DB_HOST as string,
-	user: process.env.DB_USER as string,
-	password: process.env.DB_PASSWORD as string,
-	database: process.env.DB_NAME as string,
-})
 
 // Configure express
 const app = express();

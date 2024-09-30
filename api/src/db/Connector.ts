@@ -1,51 +1,46 @@
-import mysql from 'mysql';
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
 
 /**
  * Handles the database connection, you should really only make one of these and use it across the application
  */
 export default class Connector {
-	connection: mysql.Connection;
-	
-	constructor() {
-		this.connection = this.createConnection();
-		this.connect();
-	}
+	connection: mysql.Connection | undefined;
 
-	/**
-	 * Creates the connection, does not connect, to connect call `Connector.connect`
-	 * 
-	 * @see Connector.connect
-	 */
-	createConnection() {
-		return mysql.createConnection({
-			host: process.env.DB_HOST as string,
-			user: process.env.DB_USER as string,
-			password: process.env.DB_PASSWORD as string,
-			database: process.env.DB_NAME as string,
+	constructor() {
+		dotenv.config({
+			path: './api/.env',
 		});
 	}
-
+	
 	/**
 	 * Connects to the database, to create a connection, call `Connector.createConnection`
 	 * 
 	 * @see Connector.createConnection
 	 */
-	connect() {
+	async connect() {
+		this.connection = await mysql.createConnection({
+			host: process.env.DB_HOST as string,
+			user: process.env.DB_USER as string,
+			password: process.env.DB_PASSWORD as string,
+			database: process.env.DB_NAME as string,
+		});
 		this.connection.connect();
 	}
 
 	/**
 	 * Ends the connection to the database
 	 */
-	disconnect() {
-		this.connection.end();
+	async disconnect() {
+		if (!this.connection) return;
+		return this.connection.end()
 	}
 
 	/**
 	 * Resets the connection with the database
 	 */
-	reconnect() {
-		this.disconnect();
-		this.connect();
+	async reconnect() {
+		await this.disconnect();
+		await this.connect();
 	}
 }
